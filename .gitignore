@@ -1,0 +1,55 @@
+# ======================
+# ENV / SECRETOS
+# ======================
+.env
+.env.local
+.env.*.local
+
+# ======================
+# NODE
+# ======================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ======================
+# BUILD / DIST
+# ======================
+dist/
+build/
+out/
+
+# ======================
+# SISTEMA OPERATIVO
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# LOGS
+# ======================
+logs/
+*.log
+
+# ======================
+# EDITORES
+# ======================
+.vscode/
+.idea/
+*.swp
+
+# ======================
+# CACHE
+# ======================
+.cache/
+.tmp/
+.temp/
+
+# ======================
+# ARCHIVOS GRANDES OPCIONALES
+# ======================
+*.zip
+*.rar
+*.7z

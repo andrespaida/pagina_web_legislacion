@@ -1,0 +1,75 @@
+<nav class="bg-white/95 backdrop-blur-md fixed top-0 left-0 right-0 z-[100] border-b border-slate-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20">
+            <div class="flex items-center gap-3 group cursor-pointer" data-link="home">
+                <div
+                    class="p-2.5 bg-slate-900 rounded-xl group-hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-black text-slate-900 tracking-tighter leading-none">
+                        Observatorio<span class="text-blue-600">Digital</span>
+                    </span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Monitor
+                        Nacional</span>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <div class="flex p-1 bg-slate-100/80 rounded-2xl border border-slate-200/50">
+                    <button id="btn-home" data-link="home"
+                        class="nav-btn px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300">
+                        Firmas y Ahorro
+                    </button>
+                    <button id="btn-infra" data-link="infra"
+                        class="nav-btn px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300">
+                        Conectividad
+                    </button>
+                    <button id="btn-comparativas" data-link="comparativas"
+                        class="nav-btn px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300">
+                        Comparativas
+                    </button>
+
+                    <a href="https://proyecto-lt.vercel.app/"
+                        class="nav-btn px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 inline-block text-center">
+                        Línea de Tiempo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Mantenemos tus estilos dinámicos idénticos */
+    .nav-btn {
+        transition: all 0.3s ease;
+    }
+
+    .nav-btn-active {
+        background-color: white;
+        color: #2563eb;
+        box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        transform: scale(1.05);
+        /* Un toque más de escala para el header grande */
+    }
+
+    .nav-btn-inactive {
+        color: #64748b;
+    }
+
+    .nav-btn-inactive:hover {
+        color: #0f172a;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Asegurar que el cuerpo de la página no se oculte tras el header fijo */
+    body {
+        padding-top: 0;
+        /* Ajustar si el contenido se mete debajo del nav */
+    }
+</style>
