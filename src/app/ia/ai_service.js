@@ -36,7 +36,8 @@ export async function consultarIA(preguntaUsuario) {
     try {
         const datosLocales = await cargarTodaLaData();
 
-        const resp = await fetch('http://localhost:3000/api/consulta', {
+        const resp = await fetch('/api/consulta', {
+
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
