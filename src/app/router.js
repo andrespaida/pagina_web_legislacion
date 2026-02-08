@@ -52,13 +52,13 @@ async function cargarPagina(pagina) {
     let funcionIniciadora = null;
 
     if (pagina === 'home') {
-        rutaHtml = '/src/views/home.html';
+        rutaHtml = '/views/home.html';
         funcionIniciadora = initHome;
     } else if (pagina === 'infra') {
-        rutaHtml = '/src/views/infra.html';
+        rutaHtml = '/views/infra.html';
         funcionIniciadora = initInfra;
     } else if (pagina === 'comparativas') {
-        rutaHtml = '/src/views/comparativas.html';
+        rutaHtml = '/views/comparativas.html';
         funcionIniciadora = initComparativas;
     }
 
