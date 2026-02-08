@@ -1,6 +1,6 @@
 /* src/app/utils.js - Formatos y Constantes */
 
-export const API_URL = 'http://localhost:3000/api';
+export const API_URL = '/api';
 
 export const formatoMoneda = new Intl.NumberFormat('es-EC', { 
     style: 'currency', 

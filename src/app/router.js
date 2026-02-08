@@ -6,8 +6,8 @@ import { renderChatbot } from './ia/chat_ui.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Cargar Estructura Fija
-    await cargarComponente('header-container', '/src/views/header.html');
-    await cargarComponente('footer-container', '/src/views/footer.html');
+    await cargarComponente('header-container', '/views/header.html');
+    await cargarComponente('footer-container', '/views/footer.html');
     renderChatbot();
     // 2. Cargar Página Inicial
     cargarPagina('home');
