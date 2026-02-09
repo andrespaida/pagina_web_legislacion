@@ -3,6 +3,8 @@ import { initHome } from './main.js';
 import { initInfra } from './infra.js';
 import { initComparativas } from './comparativas.js';
 import { renderChatbot } from './ia/chat_ui.js';
+import { initTimeline } from './timeline.js';
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Cargar Estructura Fija
@@ -60,7 +62,11 @@ async function cargarPagina(pagina) {
     } else if (pagina === 'comparativas') {
         rutaHtml = '/views/comparativas.html';
         funcionIniciadora = initComparativas;
+    } else if (pagina === 'timeline') {
+        rutaHtml = '/views/timeline.html';
+        funcionIniciadora = initTimeline;
     }
+
 
     try {
         const res = await fetch(rutaHtml);
