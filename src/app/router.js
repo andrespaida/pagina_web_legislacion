@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await cargarComponente('footer-container', '/views/footer.html');
     renderChatbot();
     // 2. Cargar Página Inicial
-    cargarPagina('home');
+    cargarPagina('timeline');
 
     // 3. Escuchar clics
     document.addEventListener('click', (e) => {
