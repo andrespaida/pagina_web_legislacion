@@ -1,0 +1,37 @@
+1. Introducción y Contexto General
+La digitalización en Ecuador ha evolucionado desde normas básicas de firma electrónica en 2002 hacia un marco integral de transformación digital, consolidado con la Ley Orgánica de Transformación Digital y Audiovisual (2023). Bajo el liderazgo del MINTEL, este marco fomenta la economía digital, la seguridad, la identidad digital y la simplificación de trámites.
+Esta evolución refleja un cambio desde la simple conectividad hacia una sociedad con mayor integración de servicios digitales, destacando la adopción de la fibra óptica y la telefonía móvil como pilares actuales.
+
+2. Línea de Tiempo Histórica y Evolutiva
+(Desde los inicios tecnológicos hasta la proyección futura)
+•	1991 - 1992: Inicios de Internet. Se establecen los primeros nodos de internet, destacando Ecuanex (1991) y Ecuanet (1992), marcando la entrada del país a la red mundial.
+•	1993 - 1994: Primeros Pasos Digitales. Llega el correo electrónico y el Diario Hoy (1994) se convierte en el primer medio de comunicación en línea del país.
+•	Años 2000: Expansión y Medios Digitales. Diario El Comercio y El Universo inician versiones digitales. Aumenta la penetración de internet y el uso de TICs.
+•	2007 - 2010: Impulso de Políticas Públicas. Modernización tecnológica. El Plan Nacional de Conectividad incrementa el acceso a internet del 3% al 24%.
+•	2014: Gobierno Electrónico. Se consolida la digitalización del sector público, mejorando la eficiencia y los servicios ciudadanos.
+•	2021 - 2022: Masificación de la Conectividad. La Agenda Digital busca incrementar cobertura móvil, fibra óptica a 219 cantones y desarrollo del 4G.
+•	2024 - 2034: Transformación en Salud. Adopción de una política nacional para la transformación digital en el sector sanitario.
+
+3. Evolución del Marco Legal y Normativo
+(Cronología de leyes y decretos fundamentales)
+•	2002: Ley de Comercio Electrónico, Firmas Electrónicas y Mensajes de Datos. Piedra angular que otorgó validez jurídica a la firma y documentos electrónicos.
+•	2008: Constitución de la República del Ecuador. Incluye el derecho a la protección de datos personales (Art. 66, num. 19).
+•	2010: Ley Orgánica del Sistema Nacional de Registro de Datos Públicos. Regula la seguridad y el uso de la información pública.
+•	2015: Ley Orgánica de Telecomunicaciones. Regula infraestructura y servicios para la expansión de banda ancha.
+•	2016 (Febrero): Ley Orgánica de Gestión de la Identidad y Datos Civiles. Regula la identidad digital.
+•	2016 (Julio): Norma de Digitalización de Documentos de la DINARDAP. Directrices técnicas para digitalización de archivos físicos.
+•	2018: Ley de Optimización y Eficiencia de Trámites Administrativos. Impulsó la digitalización pública y la interoperabilidad (prohibición de exigir documentos físicos que ya constan en bases de datos).
+•	2019: Política Ecuador Digital (Acuerdo Ministerial). Impulso al Gobierno Digital, disminución de la brecha digital y economía digital.
+•	2021 (Mayo): Ley Orgánica de Protección de Datos Personales (LOPDP). Marco para el control de datos. Estableció sanciones vigentes desde 2023 (hasta el 1% de facturación).
+•	2022-2025: Política Pública para la Transformación Digital del Ecuador. Enfocada en infraestructura, talento humano, servicios y ciberseguridad.
+•	2023 (Febrero/Julio): Ley Orgánica para la Transformación Digital y Audiovisual y su Reglamento. Incentivos tributarios, servicios en la nube y simplificación administrativa.
+•	2024: Norma Técnica para la Protección de Derechos Intelectuales. Regulación específica en el entorno digital.
+•	2025: Política de Transformación Digital 2025-2030. Hoja de ruta para digitalización total con énfasis en ciberseguridad y tecnologías emergentes (publicada en abril 2025).
+
+4. Pilares y Normativas Actuales
+Pilar: Transformación Digital y Audiovisual (2023)
+Descripción: Incentivos tributarios para inversión en tecnología y producción audiovisual.
+Pilar: Gobierno Digital
+Descripción: Obligación del sector público de usar tecnologías para mejorar eficiencia e interoperabilidad.
+Pilar: Seguridad Digital
+Descripción: Enfoque en protección de datos personales y ciberseguridad para servicios públicos.

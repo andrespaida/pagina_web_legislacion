@@ -47,6 +47,20 @@ const leerCSV = (subcarpeta, archivo) => {
     });
 };
 
+// HELPER para leer archivos de texto plano
+const leerTXT = (archivo) => {
+    return new Promise((resolve) => {
+        const ruta = path.join(__dirname, 'data', archivo);
+        fs.readFile(ruta, 'utf8', (err, data) => {
+            if (err) {
+                console.error(`❌ Error: No se encontró el archivo TXT en ${ruta}`);
+                return resolve(""); // Retornamos vacío para no romper la IA
+            }
+            resolve(data);
+        });
+    });
+};
+
 // ==========================================
 // 1. APIS DE "SMA" (Servicio Móvil / Firmas)
 // ==========================================
@@ -149,39 +163,43 @@ app.listen(PORT, () => {
     console.log(`   (No olvides reiniciar si haces cambios: Ctrl + C -> npm start)`);
 });
 
-
 app.post('/api/consulta', async (req, res) => {
   try {
     const { pregunta } = req.body;
+
+    // --- NUEVO: Leer el archivo de texto extra ---
+    const infoExtra = await leerTXT('info.txt'); 
 
     const systemPrompt = `
 Eres el Analista Senior del Observatorio Digital. Tu conocimiento es HÍBRIDO.
 
 FUENTES DISPONIBLES:
-- LOCAL (Contexto adjunto): Úsalo EXCLUSIVAMENTE para datos históricos y técnicos de Ecuador.
-- GLOBAL (Google Search): Úsalo OBLIGATORIAMENTE para leyes, trámites y comparativas internacionales.
+1. DATOS CSV: Datos históricos y técnicos de Ecuador (adjuntos en el contexto).
+2. DOCUMENTACIÓN TXT: Información adicional sobre: ${infoExtra.slice(0, 500)}... 
+3. GLOBAL (Google Search): Úsalo para leyes, trámites y comparativas internacionales.
 
 REGLAS CRÍTICAS:
-1. PROHIBIDO decir "no tengo datos comparativos".
-2. Para leyes: explica su razón de ser y vigencia actual.
-3. Si mezclan Ecuador con otro país, usa CSV para Ecuador y Search para el otro.
-4. Máximo 50 palabras. Tono técnico.
+1. Prioriza la información del DOCUMENTACIÓN TXT para temas conceptuales o específicos descritos allí.
+2. Si la pregunta es sobre datos técnicos de Ecuador, usa los CSV.
+3. Máximo 50 palabras. Tono técnico.
 `;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash", // Nota: Asegúrate de que el nombre del modelo sea correcto (ej. gemini-1.5-flash)
       tools: [{ googleSearch: {} }]
     });
 
     const promptFinal = `
 ${systemPrompt}
 
+CONTEXTO ADICIONAL (TXT):
+${infoExtra}
+
 PREGUNTA DEL USUARIO:
 ${pregunta}
 `;
 
     const result = await model.generateContent(promptFinal);
-
     res.json({ respuesta: result.response.text() });
 
   } catch (error) {
