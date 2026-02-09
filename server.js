@@ -10,19 +10,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
-
-
-
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
+app.use('/data', express.static(path.join(__dirname, 'data')));
 app.use(express.static(path.join(__dirname, 'src')));
 
 
@@ -194,5 +189,3 @@ ${pregunta}
     res.status(500).json({ respuesta: "Error consultando IA" });
   }
 });
-
-
