@@ -163,47 +163,45 @@ app.listen(PORT, () => {
     console.log(`   (No olvides reiniciar si haces cambios: Ctrl + C -> npm start)`);
 });
 
+
 app.post('/api/consulta', async (req, res) => {
   try {
     const { pregunta } = req.body;
 
-    // --- NUEVO: Leer el archivo de texto extra ---
+    // 1. Leer el archivo de texto
     const infoExtra = await leerTXT('info.txt'); 
 
-    const systemPrompt = `
-Eres el Analista Senior del Observatorio Digital. Tu conocimiento es HÍBRIDO.
-
-FUENTES DISPONIBLES:
-1. DATOS CSV: Datos históricos y técnicos de Ecuador (adjuntos en el contexto).
-2. DOCUMENTACIÓN TXT: Información adicional sobre: ${infoExtra.slice(0, 500)}... 
-3. GLOBAL (Google Search): Úsalo para leyes, trámites y comparativas internacionales.
-
-REGLAS CRÍTICAS:
-1. Prioriza la información del DOCUMENTACIÓN TXT para temas conceptuales o específicos descritos allí.
-2. Si la pregunta es sobre datos técnicos de Ecuador, usa los CSV.
-3. Máximo 50 palabras. Tono técnico.
-`;
-
+    // 2. Configurar el modelo SIN tools temporalmente para evitar el error 404
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash", // Nota: Asegúrate de que el nombre del modelo sea correcto (ej. gemini-1.5-flash)
-      tools: [{ googleSearch: {} }]
+      model: "gemini-1.5-flash"
+      // tools: [{ googleSearch: {} }] <--- Comenta esta línea si sigue fallando
     });
+
+    // 3. System Prompt optimizado (Quitamos la mención a Search si lo desactivamos)
+    const systemPrompt = `Eres el Analista Senior del Observatorio Digital. 
+    Tu conocimiento se basa en los archivos adjuntos (CSV para datos técnicos y TXT para conceptos).
+    Responde de forma técnica y breve (máximo 50 palabras).`;
 
     const promptFinal = `
 ${systemPrompt}
 
-CONTEXTO ADICIONAL (TXT):
+CONTEXTO LOCAL (TXT):
 ${infoExtra}
 
 PREGUNTA DEL USUARIO:
 ${pregunta}
 `;
 
+    // 4. Generación de contenido
     const result = await model.generateContent(promptFinal);
-    res.json({ respuesta: result.response.text() });
+    const response = await result.response;
+    const text = response.text();
+
+    res.json({ respuesta: text });
 
   } catch (error) {
-    console.error("ERROR GEMINI:", error);
-    res.status(500).json({ respuesta: "Error consultando IA" });
+    // Esto te dará el error real en los logs de Render si algo falla
+    console.error("ERROR DETALLADO GEMINI:", error);
+    res.status(500).json({ respuesta: "Lo siento, hubo un error procesando tu consulta en el servidor." });
   }
 });
