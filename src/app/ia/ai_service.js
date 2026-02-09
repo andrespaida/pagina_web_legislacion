@@ -43,22 +43,27 @@ async function cargarTodaLaData() {
 
 export async function consultarIA(preguntaUsuario) {
     try {
-        const datosLocales = await cargarTodaLaData();
+        // ELIMINAMOS cargarTodaLaData() de aquí. 
+        // No satures el envío desde el cliente.
 
         const resp = await fetch('/api/consulta', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                // Enviamos la pregunta con el contexto enriquecido
-                pregunta: `Instrucción: Responde basado en el contexto proporcionado.\n\nCONTEXTO:\n${datosLocales}\n\nPREGUNTA DEL USUARIO: ${preguntaUsuario}`
+                pregunta: preguntaUsuario // <--- Envía SOLO la pregunta
             })
         });
+
+        if (!resp.ok) {
+            const errorData = await resp.json();
+            throw new Error(errorData.respuesta || "Error en el servidor");
+        }
 
         const data = await resp.json();
         return data.respuesta;
 
     } catch (error) {
-        console.error(error);
-        return "Error consultando IA";
+        console.error("Error en ai_service:", error);
+        return "Error consultando IA. Revisa los logs del servidor.";
     }
 }
