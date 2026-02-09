@@ -30,6 +30,21 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+const leerTXT = () => {
+    return new Promise((resolve) => {
+        const ruta = path.join(__dirname, 'data', 'info.txt');
+
+        fs.readFile(ruta, 'utf8', (err, data) => {
+            if (err) {
+                console.log('❌ No se pudo leer info.txt');
+                resolve('');
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
+
 
 
 app.use(express.json());
@@ -308,6 +323,7 @@ app.post('/api/consulta', async (req, res) => {
 
         const { pregunta } = req.body;
 
+        const contextoLocal = await leerTXT();
 
 
         const systemPrompt = `
@@ -353,6 +369,8 @@ REGLAS CRÍTICAS:
 ${systemPrompt}
 
 
+CONTEXTO LOCAL (info.txt):
+${contextoLocal}
 
 PREGUNTA DEL USUARIO:
 
