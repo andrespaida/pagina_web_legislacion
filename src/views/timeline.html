@@ -8,11 +8,12 @@
             --tl-color-3: #f59e0b;
             --tl-color-4: #3b82f6;
             --tl-color-5: #8b5cf6;
-            
+
             font-family: 'Poppins', sans-serif;
             background-color: var(--tl-bg-color);
             padding: 60px 0;
-            overflow: hidden; /* Evita scrolls extraños en la web principal */
+            overflow: hidden;
+            /* Evita scrolls extraños en la web principal */
         }
 
         .tl-header {
@@ -21,8 +22,18 @@
             padding: 0 20px;
         }
 
-        .tl-header h2 { margin: 0; color: #1e293b; font-size: 2.2rem; font-weight: 700; }
-        .tl-header p { color: #64748b; margin-top: 5px; font-size: 1rem; }
+        .tl-header h2 {
+            margin: 0;
+            color: #1e293b;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .tl-header p {
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 1rem;
+        }
 
         .tl-wrapper {
             padding: 60px 50px;
@@ -31,10 +42,25 @@
             scrollbar-width: thin;
             scrollbar-color: var(--tl-color-4) transparent;
             cursor: grab;
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0.6),
+                    transparent);
+            border-radius: 20px;
         }
 
-        .tl-wrapper::-webkit-scrollbar { height: 8px; }
-        .tl-wrapper::-webkit-scrollbar-thumb { background: var(--tl-color-4); border-radius: 10px; }
+        .tl-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .tl-wrapper::-webkit-scrollbar-thumb {
+            background: var(--tl-color-4);
+            border-radius: 10px;
+        }
+
+        .tl-wrapper:active {
+            cursor: grabbing;
+        }
+
 
         .tl-container {
             display: inline-flex;
@@ -45,13 +71,18 @@
 
         .tl-main-line {
             position: absolute;
-            top: 30px; /* Ajustado para la nueva escala */
+            top: 30px;
             left: 0;
             right: 0;
             height: 10px;
-            background: #e5e7eb;
+            background: linear-gradient(90deg,
+                    var(--tl-color-1),
+                    var(--tl-color-2),
+                    var(--tl-color-3),
+                    var(--tl-color-4),
+                    var(--tl-color-5));
             border-radius: 20px;
-            z-index: 1;
+            opacity: 0.25;
         }
 
         .tl-item {
@@ -62,6 +93,20 @@
             vertical-align: top;
             white-space: normal;
             z-index: 2;
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tl-node {
@@ -80,14 +125,18 @@
             transition: transform 0.3s ease;
         }
 
-        .tl-item:hover .tl-node { transform: scale(1.1); }
+        .tl-item:hover .tl-node {
+            transform: scale(1.1);
+        }
 
         .tl-connector {
             width: 3px;
             height: 30px;
-            background: var(--tl-line-color);
-            margin: 0 auto;
+            background: linear-gradient(to bottom,
+                    var(--tl-line-color),
+                    transparent);
         }
+
 
         .tl-year {
             background: var(--tl-color-4);
@@ -98,41 +147,207 @@
             display: inline-block;
             margin: 10px 0;
             font-size: 0.85rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .tl-info-box {
             background: white;
             padding: 15px;
             border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
             border-top: 5px solid var(--tl-color-4);
             min-height: 240px;
             text-align: left;
         }
 
-        .tl-info-box h3 { margin: 0 0 10px 0; font-size: 1rem; color: #1e293b; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .tl-info-box b { font-size: 0.75rem; color: #64748b; text-transform: uppercase; display: block; margin-top: 10px; }
-        .tl-info-box ul { padding-left: 15px; margin: 5px 0; list-style: circle; }
-        .tl-info-box li { font-size: 0.8rem; margin-bottom: 4px; color: #4b5563; line-height: 1.3; }
+        .tl-info-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: #1e293b;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .tl-info-box b {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .tl-info-box ul {
+            padding-left: 15px;
+            margin: 5px 0;
+            list-style: circle;
+        }
+
+        .tl-info-box li {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            color: #4b5563;
+            line-height: 1.3;
+        }
 
         /* Colores Dinámicos */
-        .tl-item:nth-child(5n+1) .tl-node, .tl-item:nth-child(5n+1) .tl-year { background: var(--tl-color-1); border-color: var(--tl-color-1); }
-        .tl-item:nth-child(5n+1) .tl-info-box { border-top-color: var(--tl-color-1); }
+        .tl-item:nth-child(5n+1) .tl-node,
+        .tl-item:nth-child(5n+1) .tl-year {
+            background: var(--tl-color-1);
+            border-color: var(--tl-color-1);
+        }
 
-        .tl-item:nth-child(5n+2) .tl-node, .tl-item:nth-child(5n+2) .tl-year { background: var(--tl-color-2); border-color: var(--tl-color-2); }
-        .tl-item:nth-child(5n+2) .tl-info-box { border-top-color: var(--tl-color-2); }
+        .tl-item:nth-child(5n+1) .tl-info-box {
+            border-top-color: var(--tl-color-1);
+        }
 
-        .tl-item:nth-child(5n+3) .tl-node, .tl-item:nth-child(5n+3) .tl-year { background: var(--tl-color-3); border-color: var(--tl-color-3); }
-        .tl-item:nth-child(5n+3) .tl-info-box { border-top-color: var(--tl-color-3); }
+        .tl-item:nth-child(5n+2) .tl-node,
+        .tl-item:nth-child(5n+2) .tl-year {
+            background: var(--tl-color-2);
+            border-color: var(--tl-color-2);
+        }
 
-        .tl-item:nth-child(5n+4) .tl-node, .tl-item:nth-child(5n+4) .tl-year { background: var(--tl-color-4); border-color: var(--tl-color-4); }
-        .tl-item:nth-child(5n+4) .tl-info-box { border-top-color: var(--tl-color-4); }
+        .tl-item:nth-child(5n+2) .tl-info-box {
+            border-top-color: var(--tl-color-2);
+        }
 
-        .tl-item:nth-child(5n+5) .tl-node, .tl-item:nth-child(5n+5) .tl-year { background: var(--tl-color-5); border-color: var(--tl-color-5); }
-        .tl-item:nth-child(5n+5) .tl-info-box { border-top-color: var(--tl-color-5); }
+        .tl-item:nth-child(5n+3) .tl-node,
+        .tl-item:nth-child(5n+3) .tl-year {
+            background: var(--tl-color-3);
+            border-color: var(--tl-color-3);
+        }
 
-        .tl-footer { text-align: center; padding: 20px; color: #94a3b8; font-size: 0.9rem; }
+        .tl-item:nth-child(5n+3) .tl-info-box {
+            border-top-color: var(--tl-color-3);
+        }
+
+        .tl-item:nth-child(5n+4) .tl-node,
+        .tl-item:nth-child(5n+4) .tl-year {
+            background: var(--tl-color-4);
+            border-color: var(--tl-color-4);
+        }
+
+        .tl-item:nth-child(5n+4) .tl-info-box {
+            border-top-color: var(--tl-color-4);
+        }
+
+        .tl-item:nth-child(5n+5) .tl-node,
+        .tl-item:nth-child(5n+5) .tl-year {
+            background: var(--tl-color-5);
+            border-color: var(--tl-color-5);
+        }
+
+        .tl-item:nth-child(5n+5) .tl-info-box {
+            border-top-color: var(--tl-color-5);
+        }
+
+        .tl-footer {
+            text-align: center;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .tl-item {
+            transition: transform 0.35s ease;
+        }
+
+        .tl-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .tl-node {
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 14px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .tl-info-box {
+            transition:
+                transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.45s ease;
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .tl-item:hover .tl-info-box {
+            transform: perspective(1000px) rotateX(6deg) translateY(-6px);
+            box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.2);
+            box-shadow:
+                0 15px 25px rgba(0, 0, 0, 0.15),
+                0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Estado inicial del texto */
+        .tl-info-box h3,
+        .tl-info-box b,
+        .tl-info-box li {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.35s ease;
+        }
+
+        /* Activación al hover */
+        .tl-item:hover .tl-info-box h3 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.05s;
+        }
+
+        .tl-item:hover .tl-info-box b {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.15s;
+        }
+
+        .tl-item:hover .tl-info-box li {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.25s;
+        }
+
+        #digitalizacion-ecuador-section {
+            position: relative;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.08), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.08), transparent 45%),
+                radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.06), transparent 45%),
+                var(--tl-bg-color);
+            background-size: 200% 200%;
+            animation: bgMove 20s ease infinite;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .tl-year {
+            transition: transform 0.3s ease;
+        }
+
+        .tl-item:hover .tl-year {
+            transform: scale(1.08);
+        }
     </style>
 
     <div class="tl-header">
@@ -147,7 +362,9 @@
             <div class="tl-item">
                 <div class="tl-node">🌐</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">1991 - 1994</div></center>
+                <center>
+                    <div class="tl-year">1991 - 1994</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Inicios de Internet</h3>
                     <b>Acontecimientos</b>
@@ -156,10 +373,17 @@
                         <li>1993: Correo electrónico</li>
                         <li>1994: Diario Hoy digital</li>
                     </ul>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Expansión global de Internet</li>
+                        <li>Necesidad académica y empresarial</li>
+                        <li>Innovación en medios</li>
+                    </ul>
                     <b>Repercusiones</b>
                     <ul>
                         <li>Cultura digital inicial</li>
                         <li>Inicio del periodismo digital</li>
+                        <li>Nuevas formas de comunicación</li>
                     </ul>
                 </div>
             </div>
@@ -167,18 +391,22 @@
             <div class="tl-item">
                 <div class="tl-node">💻</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">Años 2000</div></center>
+                <center>
+                    <div class="tl-year">Años 2000</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Expansión del Internet</h3>
                     <b>¿Por qué surgió?</b>
                     <ul>
                         <li>Reducción de costos tecnológicos</li>
                         <li>Globalización comercial</li>
+                        <li>Crecimiento de computadoras personales</li>
                     </ul>
                     <b>Repercusiones</b>
                     <ul>
                         <li>Acceso masivo a información</li>
                         <li>Comercio electrónico informal</li>
+                        <li>Migración de medios tradicionales</li>
                     </ul>
                 </div>
             </div>
@@ -186,18 +414,22 @@
             <div class="tl-item">
                 <div class="tl-node">📜</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2002</div></center>
+                <center>
+                    <div class="tl-year">2002</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Ley de Comercio Electrónico</h3>
                     <b>¿Por qué surgió?</b>
                     <ul>
-                        <li>Validez legal de contratos</li>
+                        <li>Validez legal de contratos digitales</li>
                         <li>Estándares internacionales</li>
+                        <li>Intercambio electrónico creciente</li>
                     </ul>
                     <b>Repercusiones</b>
                     <ul>
                         <li>Seguridad jurídica</li>
                         <li>Inicio formal del e-commerce</li>
+                        <li>Base legal digital</li>
                     </ul>
                 </div>
             </div>
@@ -205,13 +437,16 @@
             <div class="tl-item">
                 <div class="tl-node">📡</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2007 - 2010</div></center>
+                <center>
+                    <div class="tl-year">2007 - 2010</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Conectividad</h3>
                     <b>¿Por qué surgió?</b>
                     <ul>
                         <li>Brecha digital urbano-rural</li>
                         <li>Inclusión tecnológica</li>
+                        <li>Modernización regional</li>
                     </ul>
                     <b>Repercusiones</b>
                     <ul>
@@ -224,7 +459,9 @@
             <div class="tl-item">
                 <div class="tl-node">🔒</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2008</div></center>
+                <center>
+                    <div class="tl-year">2008</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Constitución – Datos</h3>
                     <b>¿Por qué surgió?</b>
@@ -236,6 +473,7 @@
                     <ul>
                         <li>Derecho a privacidad digital</li>
                         <li>Base para la LOPDP</li>
+                        <li>Responsabilidad estatal</li>
                     </ul>
                 </div>
             </div>
@@ -243,9 +481,11 @@
             <div class="tl-item">
                 <div class="tl-node">📂</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2010</div></center>
+                <center>
+                    <div class="tl-year">2010</div>
+                </center>
                 <div class="tl-info-box">
-                    <h3>Datos Públicos</h3>
+                    <h3>Registro de Datos Públicos</h3>
                     <b>¿Por qué surgió?</b>
                     <ul>
                         <li>Ordenar información estatal</li>
@@ -255,6 +495,7 @@
                     <ul>
                         <li>Interoperabilidad inicial</li>
                         <li>Acceso ciudadano mejorado</li>
+                        <li>Control de información</li>
                     </ul>
                 </div>
             </div>
@@ -262,7 +503,9 @@
             <div class="tl-item">
                 <div class="tl-node">🏛️</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2014</div></center>
+                <center>
+                    <div class="tl-year">2014</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Gobierno Electrónico</h3>
                     <b>¿Por qué surgió?</b>
@@ -273,7 +516,97 @@
                     <b>Repercusiones</b>
                     <ul>
                         <li>Trámites en línea</li>
-                        <li>Transparencia y rapidez</li>
+                        <li>Reducción de tiempos</li>
+                        <li>Transparencia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">📶</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2015</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Telecomunicaciones</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Modernizar infraestructura</li>
+                        <li>Crecimiento móvil</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Banda ancha</li>
+                        <li>Regulación operadoras</li>
+                        <li>Mejor cobertura</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">🪪</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2016</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Identidad Digital</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Trámites online</li>
+                        <li>Validar identidad</li>
+                        <li>Archivos físicos acumulados</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Identidad digital oficial</li>
+                        <li>Menos papel</li>
+                        <li>Mejor custodia documental</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">⚙️</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2018</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Optimización de Trámites</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Burocracia excesiva</li>
+                        <li>Documentos repetidos</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Interoperabilidad</li>
+                        <li>Menos corrupción</li>
+                        <li>Gobierno digital fuerte</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">🚀</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2019</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Ecuador Digital</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Estrategia nacional</li>
+                        <li>Crecimiento economía digital</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Innovación tecnológica</li>
+                        <li>Alfabetización digital</li>
+                        <li>Menor brecha</li>
                     </ul>
                 </div>
             </div>
@@ -281,18 +614,112 @@
             <div class="tl-item">
                 <div class="tl-node">🔐</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2021</div></center>
+                <center>
+                    <div class="tl-year">2021</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Protección de Datos</h3>
                     <b>¿Por qué surgió?</b>
                     <ul>
                         <li>Redes sociales masivas</li>
+                        <li>Riesgos de filtración</li>
                         <li>Estándares GDPR</li>
                     </ul>
                     <b>Repercusiones</b>
                     <ul>
-                        <li>Sanciones por mal uso</li>
+                        <li>Sanciones económicas</li>
                         <li>Conciencia de privacidad</li>
+                        <li>Regulación estricta</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">📱</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2021 - 2022</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Agenda Digital y 4G</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Mayor velocidad</li>
+                        <li>Educación virtual</li>
+                        <li>Teletrabajo</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Fibra óptica</li>
+                        <li>Mejora móvil</li>
+                        <li>Plataformas digitales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">🧠</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2022 – 2025</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Transformación Digital</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Modernización estatal</li>
+                        <li>Competencia regional</li>
+                        <li>IA y nube</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Talento digital</li>
+                        <li>Ciberseguridad</li>
+                        <li>Servicios públicos digitales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">📈</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2023</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Ley Transformación Digital</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Consolidar marco legal</li>
+                        <li>Inversión tecnológica</li>
+                        <li>Industria audiovisual</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Incentivos tributarios</li>
+                        <li>Uso obligatorio de tecnología</li>
+                        <li>Inversión en nube</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-node">🩺</div>
+                <div class="tl-connector"></div>
+                <center>
+                    <div class="tl-year">2024</div>
+                </center>
+                <div class="tl-info-box">
+                    <h3>Regulaciones Especializadas</h3>
+                    <b>¿Por qué surgió?</b>
+                    <ul>
+                        <li>Propiedad intelectual digital</li>
+                        <li>Digitalización salud</li>
+                    </ul>
+                    <b>Repercusiones</b>
+                    <ul>
+                        <li>Seguridad jurídica creadores</li>
+                        <li>Historias clínicas digitales</li>
                     </ul>
                 </div>
             </div>
@@ -300,7 +727,9 @@
             <div class="tl-item">
                 <div class="tl-node">🤖</div>
                 <div class="tl-connector"></div>
-                <center><div class="tl-year">2025</div></center>
+                <center>
+                    <div class="tl-year">2025</div>
+                </center>
                 <div class="tl-info-box">
                     <h3>Política 2025–2030</h3>
                     <b>¿Por qué surge?</b>
@@ -312,6 +741,7 @@
                     <ul>
                         <li>Digitalización casi total</li>
                         <li>Sociedad digital madura</li>
+                        <li>Competitividad económica</li>
                     </ul>
                 </div>
             </div>
